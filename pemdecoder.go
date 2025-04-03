@@ -9,7 +9,7 @@ import (
 
 // make struct 'type' that holds a shorthand 'type' (cert, crl, csr, key, p7?) and the JSON data so a front-end can format the data nicely
 
-func decodePEM(pemBlock string) (string, error) {
+func DecodePEM(pemBlock string) (string, error) {
 	//	First, attempt to decode the PEM and let Go handle the type
 	var result interface{}
 
