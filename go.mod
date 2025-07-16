@@ -1,4 +1,4 @@
-module pemdecoder
+module github.com/isnotnick/pemdecoder
 
 go 1.24.1
 
