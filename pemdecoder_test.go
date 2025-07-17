@@ -28,6 +28,25 @@ Zz0r7Yhcw0Du7fC+rovAYZvHlfwFQ/ijKfQzdipQAb8SMbS8sQ==
 	//PrettyPrint(csrDecode)
 }
 
+func TestCSRDecode2(t *testing.T) {
+	csrTest := `MIIBRDCBywIBADBMMQswCQYDVQQGEwJHQjERMA8GA1UEBxMI
+c2Rmc2Rmc2QxFzAVBgNVBAoTDnNkZnNkZnNkZnNkZnNkMREwDwYDVQQDEwhu
+aWNrLmxvbDB2MBAGByqGSM49AgEGBSuBBAAiA2IABKCW+Ik+TOMZzwoEU1iTT
+0OEXLsLMh1yrsodn2e+Q99zBnrEujpdTNXVR57XL/9swFH89n8rd4jmS15wcU
+Bkr8/Q2apGzlO8HfFKNyOwNooxnOAW2JvTPcz3dyXxtE69L6AAMAoGCCqGSM4
+9BAMCA2gAMGUCME0b5FxFMV44fFpJrfuAYW7XDsWgVFkDeTLpzeE7cRk+225t
+4depQaXU3ZGSdlqoRgIxANeImmBdssQS6OSu3rQ9oLtajkhXmj3CyLknffuW8
+XTa0NVCEPxwVr9i+ZG9l6EAkg==`
+	csrDecode, err := DecodePEM(csrTest)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	fmt.Println(csrDecode)
+	//PrettyPrint(csrDecode)
+}
+
 func TestECKeyDecode(t *testing.T) {
 	keyTest := `-----BEGIN EC PRIVATE KEY-----
 MIG2AgEAMBAGByqGSM49AgEGBSuBBAAiBIGeMIGbAgEBBDDRzgHBw1qB6RoVD1vN
@@ -83,7 +102,7 @@ UYprdi9VMKUEETKpscdvLQDL
 	}
 
 	fmt.Println(keyDecode)
-	//PrettyPrint(csrDecode)
+	//PrettyPrint(keyDecode)
 }
 
 func PrettyPrint(v interface{}) {

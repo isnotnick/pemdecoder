@@ -65,23 +65,49 @@ func DecodePEM(pemBlock string) (string, error) {
 					//	It was a certificate
 					result = cert
 
+					finalDecode.PEMType = "Certificate"
+					certPretty, err := certinfo.CertificateText(cert)
+					if err == nil {
+						finalDecode.OpenSSLDecode = certPretty
+					}
+
 					jsonBytes, err := json.Marshal(result)
 					if err != nil {
 						return "", err
 					}
 
-					return string(jsonBytes), nil
+					finalDecode.GoDecode = string(jsonBytes)
+
+					finalJsonBytes, err := json.Marshal(finalDecode)
+					if err != nil {
+						return "", err
+					}
+
+					return string(finalJsonBytes), nil
 				}
 			}
 			//	It was a CSR
 			result = csr
+
+			finalDecode.PEMType = "CSR"
+			csrPretty, err := certinfo.CertificateRequestText(csr)
+			if err == nil {
+				finalDecode.OpenSSLDecode = csrPretty
+			}
 
 			jsonBytes, err := json.Marshal(result)
 			if err != nil {
 				return "", err
 			}
 
-			return string(jsonBytes), nil
+			finalDecode.GoDecode = string(jsonBytes)
+
+			finalJsonBytes, err := json.Marshal(finalDecode)
+			if err != nil {
+				return "", err
+			}
+
+			return string(finalJsonBytes), nil
 		}
 	}
 
